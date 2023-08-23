@@ -1,0 +1,14 @@
+.grid {
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-rows: auto auto auto;
+    grid-template-columns: auto auto;
+}
+
+input {
+	margin-bottom: 5px;
+}
+
+.validationError {
+    color: red;
+}
