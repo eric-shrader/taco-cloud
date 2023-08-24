@@ -6,19 +6,26 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import lombok.Data;
-
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.Digits;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import org.hibernate.validator.constraints.CreditCardNumber;
-import org.springframework.data.annotation.Id;
 
 @Data
+@Entity
 public class TacoOrder implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 
 	@NotBlank(message = "delivery name is required")
@@ -47,6 +54,8 @@ public class TacoOrder implements Serializable {
 
 	private Date placedAt = new Date();
 
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name = "taco_order")
 	private List<Taco> tacos = new ArrayList<>();
 
 	public void addTaco(Taco taco) {

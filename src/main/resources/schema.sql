@@ -8,21 +8,14 @@ CREATE TABLE IF NOT EXISTS Taco_Order (
     cc_number VARCHAR(16) NOT NULL,
     cc_expiration VARCHAR(5) NOT NULL,
     cc_cvv VARCHAR(3) NOT NULL,
-    placed_at TIMESTAMP NOT NULL 
+    placed_at TIMESTAMP NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS Taco (
 	id IDENTITY NOT NULL,
 	name VARCHAR(50),
 	taco_order BIGINT NOT NULL,
-	taco_order_key BIGINT NOT NULL,
 	created_at TIMESTAMP NOT NULL
-);
-
-CREATE TABLE IF NOT EXISTS Ingredient_Ref (
-    ingredient VARCHAR(4) NOT NULL,
-    taco BIGINT NOT NULL,
-    taco_key BIGINT NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS Ingredient (
@@ -33,5 +26,3 @@ CREATE TABLE IF NOT EXISTS Ingredient (
 
 ALTER TABLE Taco
 ADD FOREIGN KEY (taco_order) REFERENCES Taco_order(id);
-ALTER TABLE Ingredient_Ref
-ADD FOREIGN KEY (ingredient) REFERENCES Ingredient(id);
